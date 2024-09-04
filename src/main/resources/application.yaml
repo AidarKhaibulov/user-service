@@ -1,0 +1,37 @@
+server:
+  port: "${PORT:8080}"
+
+
+openapi:
+  id: "${API_ID:user-service}"
+  title: "${API_TITLE:User service}"
+  description: "${API_DESCRIPTION:user-service description}"
+
+# PostgreSQL
+spring:
+  flyway:
+    baseline-on-migrate: true
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driverClassName: org.postgresql.Driver
+
+  # Hibernate
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+
+  # Test Spring Security config
+  security:
+    jwt:
+      secret-key: ${SECRET_KEY}
+      expiration: ${EXPIRATION}
+      refresh-token:
+        expiration: ${EXPIRATION_REFRESH}

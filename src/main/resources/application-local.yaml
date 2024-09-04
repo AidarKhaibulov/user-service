@@ -1,0 +1,28 @@
+# PostgreSQL
+spring:
+  flyway:
+    baseline-on-migrate: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5400/user-service-base
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+
+  # Hibernate
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+
+  # Test Spring Security config
+  security:
+    jwt:
+      secret-key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
+      expiration: 86400000 # day
+      refresh-token:
+        expiration: 604800000 # 7 days

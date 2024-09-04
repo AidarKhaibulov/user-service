@@ -1,0 +1,34 @@
+# Dev config
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: java -jar ./app.jar
+    ports:
+      - "8080:8080"
+    image: 'user-service'
+    depends_on:
+      - postgres_db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5400/user-service-base
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      SECRET_KEY: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
+      EXPIRATION: 86400000
+      EXPIRATION_REFRESH: 604800000
+
+
+  postgres_db:
+    image: postgres:latest
+    container_name: postgres-user-database
+    ports:
+      - "5400:5400"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    command: postgres -p 5400
+
+volumes:
+  postgres-data:
