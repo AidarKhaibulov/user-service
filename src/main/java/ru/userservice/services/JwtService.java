@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import ru.userservice.models.User;
 
 import java.security.Key;
 import java.util.Date;
@@ -72,7 +73,7 @@ public class JwtService {
      * @param userDetails the user details for which the token is to be generated
      * @return the generated JWT token
      */
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(User userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
 
@@ -88,7 +89,7 @@ public class JwtService {
      */
     public String generateToken(
             Map<String, Object> extraClaims,
-            UserDetails userDetails
+            User userDetails
     ) {
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
@@ -103,7 +104,7 @@ public class JwtService {
      * @return the generated refresh token
      */
     public String generateRefreshToken(
-            UserDetails userDetails
+            User userDetails
     ) {
         return buildToken(new HashMap<>(), userDetails, refreshExpiration);
     }
@@ -121,9 +122,10 @@ public class JwtService {
      */
     private String buildToken(
             Map<String, Object> extraClaims,
-            UserDetails userDetails,
+            User userDetails,
             long expiration
     ) {
+        extraClaims.put("userId", userDetails.getId());
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
