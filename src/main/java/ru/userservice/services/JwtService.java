@@ -125,7 +125,6 @@ public class JwtService {
             User userDetails,
             long expiration
     ) {
-        extraClaims.put("userId", userDetails.getId());
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
