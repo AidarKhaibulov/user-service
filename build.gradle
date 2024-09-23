@@ -67,6 +67,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
+    // Gateway
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway-mvc'
+
 }
 
 dependencyManagement {
