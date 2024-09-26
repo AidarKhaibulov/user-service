@@ -66,6 +66,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8092/order
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0MjM0IiwiaWF0IjoxNzI3MzgwNDk3LCJleHAiOjE3Mjc0NjY4OTd9.iZT8mfRwy4Q7xEv4YmjUpuECpl0Cucrgog0ERFNGZMo
 Content-Type: application/json
 
 {
