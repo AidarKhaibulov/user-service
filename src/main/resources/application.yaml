@@ -1,16 +1,24 @@
 server:
-  port: "${PORT:8080}"
-
+  port: ${PORT:8080}
 
 openapi:
-  id: "${API_ID:user-service}"
-  title: "${API_TITLE:User service}"
-  description: "${API_DESCRIPTION:user-service description}"
+  id: ${API_ID:user-service}
+  title: ${API_TITLE:User service}
+  description: ${API_DESCRIPTION:user-service description}
 
 # PostgreSQL
 spring:
   flyway:
     baseline-on-migrate: true
+
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: ORDER-SERVICE
+            uri: http://order-service:8070
+            predicates:
+              - Path=/order/**
 
   datasource:
     url: ${SPRING_DATASOURCE_URL}
@@ -26,7 +34,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 
   # Test Spring Security config
   security:

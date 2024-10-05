@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  user-database:
+    image: postgres:16
+    container_name: user-database-local
+    environment:
+      POSTGRES_DB: user-service-base
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "4600:4600"
+    volumes:
+      - user-postgres-data-local:/var/lib/postgresql/data
+    command: postgres -p 4600
+
+volumes:
+  user-postgres-data-local:

@@ -15,7 +15,7 @@ spring:
               - Path=/order/**
 
   datasource:
-    url: jdbc:postgresql://localhost:5400/user-service-base
+    url: jdbc:postgresql://localhost:4600/user-service-base
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
