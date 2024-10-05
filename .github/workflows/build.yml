@@ -3,7 +3,7 @@ name: User service Build
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
